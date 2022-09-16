@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User form</title>
+</head>
+<body>
+<h1>Editor:</h1>
+<br><br>
+<form action="saveUser" method="get">
+    <input type="text" name="userName" placeholder="Name" th:attr="value = ${user.name}"/><br><br>
+    <input type="text" name="userLastName" placeholder="Last name" th:attr="value = ${user.lastname}"/><br><br>
+    <input type="number" name="userAge" placeholder="Age" th:attr="value = ${user.age}"/><br><br>
+    <input type="text" name="userCarBrand" placeholder="Car brand" th:attr="value = ${user.car.model}"/><br><br>
+    <input type="text" name="userCarColor" placeholder="Car color" th:attr="value = ${user.car.color}"/><br><br><br>
+    <button type="submit" th:name="id" th:value="${user.id}">Save  </button>
+    <button type="button" onclick="window.location.href='index'">Back</button>
+</form>
+</body>
+</html>
