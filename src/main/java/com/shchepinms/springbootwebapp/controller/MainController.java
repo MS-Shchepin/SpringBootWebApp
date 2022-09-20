@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-public class MyController {
+public class MainController {
     private final UserService userService;
 
-    public MyController(@Autowired UserService userService) {
+    public MainController(@Autowired UserService userService) {
         this.userService = userService;
     }
 
@@ -30,7 +30,6 @@ public class MyController {
 
     @GetMapping(value = "/saveUser")
     public String saveUser(@RequestParam(value = "id", required = false) Long id, HttpServletRequest request) {
-        User user;
         String name = request.getParameter("userName");
         String lastName = request.getParameter("userLastName");
         int age = 0;
@@ -41,18 +40,7 @@ public class MyController {
         }
         String carModel = request.getParameter("userCarBrand");
         String carColor = request.getParameter("userCarColor");
-        if (id == null || id == 0) {
-            user = new User(name, lastName, age, new Car(carModel, carColor));
-            System.out.println("Save " + user);
-        } else {
-            user = userService.getById(id);
-            user.setName(name);
-            user.setLastname(lastName);
-            user.setAge(age);
-            user.getCar().setColor(carColor);
-            user.getCar().setModel(carModel);
-            System.out.println("Update " + user);
-        }
+        User user = new User(id == null ? 0 : id, name, lastName, age, new Car(carModel, carColor));
         userService.save(user);
         return "redirect:index";
     }

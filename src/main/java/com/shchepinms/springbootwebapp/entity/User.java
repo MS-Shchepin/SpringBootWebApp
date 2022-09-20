@@ -28,6 +28,11 @@ public class User {
         this.car = car;
     }
 
+    public User(long id, String name, String lastname, int age, Car car) {
+        this(name, lastname, age, car);
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }
