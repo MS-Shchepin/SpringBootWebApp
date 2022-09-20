@@ -23,7 +23,6 @@ public class MainController {
     @GetMapping(value = "/index")
     public String showAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
-        System.out.println(users);
         model.addAttribute("users", users);
         return "index";
     }
@@ -47,7 +46,6 @@ public class MainController {
 
     @GetMapping(value = "/editor")
     public String showUserEditor(@RequestParam(value = "id", required = false) Long id, Model model) {
-        System.out.println("/editor -> editor");
         if (id != null) {
             model.addAttribute("user", userService.getById(id));
         } else {
